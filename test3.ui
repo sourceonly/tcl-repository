@@ -1,0 +1,26 @@
+<frame>
+  <frame bg='blue'>
+    <pack expand='yes' fill='y' side='left'/>
+    <radiobutton text='a' state='active'>
+      <pack side='top'/>
+    </radiobutton>
+    <radiobutton text='b' state='disable'>
+      <pack side='top'/>
+    </radiobutton>
+    <radiobutton text='c' state='normal'>
+      <pack side='top'/>
+    </radiobutton>
+  </frame>
+  <frame bg='red'> 
+    <pack side='left'/>
+    <label text='label example' width='30'>
+      <pack side='left' padx='5'/>
+    </label>
+    <entry textvariable="::ABC" >
+      <pack side='left'/>
+    </entry>
+    <button text='button' command='puts abc'>
+      <pack side='left'/>
+    </button>
+  </frame>
+</frame>

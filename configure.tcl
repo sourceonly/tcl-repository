@@ -1,3 +1,9 @@
+package provide Configurefile 2.0
+
+if [namespace exist CONFIGUREFILE] {
+    namespace delete CONFIGUREFILE;
+}
+
 
 namespace eval CONFIGUREFILE {
 
@@ -22,6 +28,14 @@ namespace eval CONFIGUREFILE {
 	    set tag_block "";
 	}
 	return $result_list
+    }
+    
+    proc parseContentByTag {content tag} {
+	regsub @tag@ {\[@tag@\]([^\[]*)} $tag matchTAG;o
+	if [regexp $matchTAG $content tag_block] {
+	    return [parseTag $tag_block];
+	} 
+	return ""
     }
     
     proc parseTag {tag_block} {
@@ -62,28 +76,34 @@ namespace eval CONFIGUREFILE {
 	regsub -- {\s*=\s*} $line = line;
 	return [split $line "="]
     }
-    
+
     
     proc createTagBlock {tag tag_value} {
 	set block [list];
+	
 	append block "\[$tag\]\n";
 	foreach {key value} $tag_value {
 	    append block "$key=$value\n";
 	}
 	return $block;
     }
+    
     proc updateConfigureContent {content tag tag_value} {
 	regsub @tag@ {\[@tag@\]([^\[]*)} $tag matchTAG;
-	set block [createTagBlock $tag $tag_value];
 	if {![regexp -- $matchTAG $content]} {
+	    set block [createTagBlock $tag $tag_value];
 	    append content $block;
 	} else {
 	    regsub @tag@ {\[@tag@\]([^\[]*)} $tag matchTAG;
-	    regsub $matchTAG $content $block content
+	    set old_tag [parseContentByTag $content $tag];
+	    array set [lindex $old_tag 0] [lindex $old_tag 1];
+	    array set $tag $tag_value;
+	    set block [createTagBlock $tag [array get $tag];];
+	    regsub $matchTAG $content $block content;
 	}
 	return $content;
     }
-
+    
     proc updateFile {filename tag tag_value} {
 	set fch [open $filename r];
 	set content [read $fch];
@@ -93,4 +113,8 @@ namespace eval CONFIGUREFILE {
 	puts $fch $vcont;
 	close $fch;
     }
+    namespace export *
 }
+
+
+

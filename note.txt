@@ -1,0 +1,39 @@
+
+
+dep:  tdom; (&optional) hwt; esgCN package 
+
+prestep: source the tcllib.tcl file
+
+
+# to test 1
+
+test test1.ui ; # it require ::esgCN::HmCollector widget  /  hwt for hwt::labeledframe
+
+# to test 2  ttk theme
+
+::REPORTGUI::use ttk
+test test2.ui ; # hwt for hwt::labeledframe 
+  
+ # back to tk theme
+::REPORTGUI::use tk
+test test2.ui ; # hwt for hwt::labeledframe 
+  
+
+
+# to test, can't use ttk because ttk dont support frame's -bg option
+
+test test3.ui ; 
+
+# to compile it would generate tk frame from .ui file; with tcl code in gui.tk file. 
+
+testcompile test3.ui gui.tk
+
+
+# to re-use the gui.tk file:
+
+# 1. generate parent frame, in testcompile, it would be .xxx
+
+catch {destroy .xxx}
+toplevel .xxx
+source gui.tk
+

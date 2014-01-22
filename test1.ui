@@ -1,0 +1,91 @@
+<frame>
+  <LabeledFrame text="STEP:1">
+    <pack side='top' anchor='nw'/>
+    <frame>
+      <pack side='left'/>
+      <label text='ABC:' width='15'>
+	<pack side='left'/>
+      </label>
+      <Collector entity="comp" markid="1" onClick='1'>
+	<pack side='left'/>
+      </Collector>
+      <button text='SO' command="puts \[hm_getmark comps 1\]" width='20'>
+	<pack side='left'/>
+      </button>
+      <pack side='top' anchor='nw'/>
+    </frame>
+    <frame>
+      <pack side='left'/>
+      <label text='ABC:' width='15'>
+	<pack side='left'/>
+      </label>
+      <Collector entity="comp" markid="1" onClick='1'>
+	<pack side='left'/>
+      </Collector>
+      <button text='SO' command="puts \[hm_getmark comps 1\]" width='20'>
+	<pack side='left'/>
+      </button>
+      <pack side='top' anchor='nw'/>
+    </frame>
+  </LabeledFrame>
+  <LabeledFrame text="step:2">
+    <frame>
+      <pack side='left' anchor='nw' expand='yes'/>
+      <LabeledFrame text='[list select 1]'>
+	<frame>
+	  <pack side='left' anchor='nw'/>
+	  <radiobutton text='type1'>
+	    <pack side='top'/>
+	  </radiobutton>
+	  <radiobutton text='type2'>
+	    <pack side='top'/>
+	  </radiobutton>
+	  <radiobutton text='type3'>
+	    <pack side='top'/>
+	  </radiobutton>
+	</frame>
+      </LabeledFrame>
+    </frame>
+    <frame>
+      <frame>
+	<pack side='left'/>
+	<label text='ABC:' width='15'>
+	  <pack side='left'/>
+	</label>
+	<Collector entity="comp" markid="1" onClick='1'>
+	  <pack side='left'/>
+	</Collector>
+	<button text='SO' command="puts \[hm_getmark comps 1\]" width='20'>
+	  <pack side='left'/>
+	</button>
+	<pack side='top' anchor='nw'/>
+      </frame>
+      <pack side='left' anchor='nw' expand='yes'/>
+    </frame>
+    <frame>
+      <button text='ok' command="puts \[hm_getmark comps 1\]" width='20'>
+	<pack side='top'/>
+      </button>
+      <button text='cancel' command="puts \[hm_getmark comps 1\]" width='20'>
+	<pack side='top'/>
+      </button>
+      <pack side='left' anchor='nw' expand='yes'/>
+    </frame>
+  </LabeledFrame>
+  <LabeledFrame text="[list step 3]">
+       <frame>
+      <pack side='left'/>
+      <label text='ABC:' width='15'>
+	<pack side='left'/>
+      </label>
+      <Collector entity="comp" markid="1" onClick='1'>
+	<pack side='left'/>
+      </Collector>
+      <button text='SO' command="puts \[hm_getmark comps 1\]" width='20'>
+	<pack side='left'/>
+      </button>
+      <pack side='top' anchor='nw'/>
+    </frame>
+    
+  </LabeledFrame>
+</frame>

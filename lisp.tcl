@@ -1,3 +1,5 @@
+interp alias {}  $name {} parseSexp ($name
+
 proc checkSexp {args} {
     set Sexplevel 0;
     
@@ -73,6 +75,40 @@ proc lisp_pair_puts {args} {
 
 
 
+
+proc parseSexp {string} {
+    set args_list [list];
+    set this_arg [list];
+    set brace_level 1;
+    set quote 0;
+    for {set i 0} {$i<[string length $string]} {incr i} {
+	set c [string index $string $i];
+	if {$c=="\""} {
+	    set quote [expr $quote^1]
+	}
+	if {$quote} {
+	    append this_arg $c
+	}
+	switch $c {
+	    " " -
+	    "\t" -
+	    "\n" {
+		if ![regexp -- ^\\s+$ $this_arg] {
+		    lappend args_list $this_arg
+		    set this_arg "";
+		}
+	    }
+	    "(" {
+		
+	    }
+	    
+	}
+	return $args_list
+    }
+    
+    
+    
+}    
 
 
 
